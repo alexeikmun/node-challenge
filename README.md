@@ -6,7 +6,7 @@ YouCan is a mobile application to archive your goals to stay motivated to accomp
 
 #### Start project ####
 
-1. git clone 
+1. git clone https://github.com/leonelcontreras/youcan-api.git
 2. cd youcan-api
 3. npm i
 4. npm start
