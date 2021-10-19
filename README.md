@@ -1,4 +1,4 @@
-# youcan-api #
+# YOUCAN-API #
 YouCan is a mobile application to archive your goals to stay motivated to accomplish it.
 
 
