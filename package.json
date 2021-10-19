@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0"
+  },
+  "name": "youcan-api",
+  "description": "YouCan is a mobile application to archive your goals to stay motivated to accomplish it.",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonelcontreras/youcan-api.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongoose",
+    "firebase",
+    "eslint",
+    "standardjs"
+  ],
+  "author": "Leonel Contreras",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leonelcontreras/youcan-api/issues"
+  },
+  "homepage": "https://github.com/leonelcontreras/youcan-api#readme"
+}
