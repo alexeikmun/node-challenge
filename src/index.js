@@ -1,6 +1,6 @@
-const http = require('http')
-const dotenv = require('dotenv')
-const { setupDatabase } = require('./config')
+import { setupDatabase } from './config'
+import http from 'http'
+import dotenv from 'dotenv'
 
 dotenv.config()
 

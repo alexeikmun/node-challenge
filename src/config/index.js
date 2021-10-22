@@ -1,5 +1,5 @@
-const setupDatabase = require('./database.config.js')
+import setupDatabase from './database.config.js'
 
-module.exports = {
+export {
   setupDatabase
 }

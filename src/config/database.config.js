@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const setupDatabase = async (host, port, user, password, database) => {
   // mongodb://localhost:27017/test
@@ -6,4 +6,4 @@ const setupDatabase = async (host, port, user, password, database) => {
   return await mongoose.createConnection(`mongodb://${user}:${password}@${host}:${port}/${database}`)
 }
 
-module.exports = setupDatabase
+export default setupDatabase
