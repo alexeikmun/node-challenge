@@ -1,4 +1,8 @@
-const AccessController = (router) => {
+import { AuthService } from '../services'
+
+const AccessController = (router, auth) => {
+  const authService = AuthService()
+
   router.post('/user/login', (request, response) => {
     console.log('body -->', request.body)
     const { user, password } = request.body
@@ -6,10 +10,11 @@ const AccessController = (router) => {
     return response.send({ user, password })
   })
 
-  router.post('/user/sign-up', (request, response) => {
-    const { user, password } = request.body
+  router.post('/user/sign-up', async (request, response) => {
+    const { email, password } = request.body
+    const user = await authService.createUser(auth, email, password)
 
-    return response.send({ user, password })
+    return response.send(user)
   })
 
   router.post('/user/recovery-password', (request, response) => {
