@@ -3,6 +3,8 @@ const TestController = (router, auth) => {
     console.log('You call me')
     return response.send({ saludo: 'Hola Mundo' })
   })
+
+  return router
 }
 
 export default TestController
