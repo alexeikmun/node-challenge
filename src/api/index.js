@@ -1,11 +1,13 @@
 import express from 'express'
 import listEndpoints from 'express-list-endpoints'
 import Routes from './routes'
+import { AuthMiddleware } from './middlewares'
 
 const api = (config) => {
   const app = express()
   const router = express.Router()
-  const routes = Routes(router)
+  const auth = AuthMiddleware(config.firebase)
+  const routes = Routes(router, auth)
 
   app.use('/api/v1', routes)
   app.use((request, response) => response.sendStatus(404))
