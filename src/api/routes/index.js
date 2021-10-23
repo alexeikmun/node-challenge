@@ -1,13 +1,13 @@
 import * as controllers from '../controllers'
 
-const Routes = (router, auth) => {
+const Routes = (config) => {
   let controller
 
   for (controller in controllers) {
-    controllers[controller](router, auth)
+    controllers[controller](config)
   }
 
-  return router
+  return config.router
 }
 
 export default Routes
