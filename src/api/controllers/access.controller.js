@@ -1,10 +1,10 @@
 import { AuthService, UserService } from '../services'
 
-const AccessController = ({ router, firebase }) => {
+const AccessController = ({ router, firebase, tryCatch }) => {
   const authService = AuthService()
   const userService = UserService()
 
-  router.post('/user/sign-up', async (request, response) => {
+  router.post('/user/sign-up', tryCatch(async (request, response) => {
     const { email, password, name } = request.body
 
     try {
@@ -17,7 +17,7 @@ const AccessController = ({ router, firebase }) => {
       console.log('error -->', error)
       return response.status(500).send({ code: -1, message: 'Couldn´t create the user' })
     }
-  })
+  }))
 
   return router
 }

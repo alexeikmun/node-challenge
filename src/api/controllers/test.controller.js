@@ -1,6 +1,6 @@
-const TestController = ({ router, auth }) => {
-  router.get('/test', auth, (request, response) => response.send({ saludo: 'Hola Mundo' }
-  ))
+const TestController = ({ router, auth, tryCatch }) => {
+  router.get('/test', auth, tryCatch((request, response) => response.send({ saludo: 'Hola Mundo' }
+  )))
 
   return router
 }
