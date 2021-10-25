@@ -1,10 +1,11 @@
 import { AuthService, UserService } from '../services'
+import { userValidator } from '../validators'
 
-const AccessController = ({ router, firebase, tryCatch }) => {
+const AccessController = ({ router, firebase, tryCatch, validator }) => {
   const authService = AuthService()
   const userService = UserService()
 
-  router.post('/user/sign-up', tryCatch(async (request, response) => {
+  router.post('/user/sign-up', userValidator, validator, tryCatch(async (request, response) => {
     const { email, password, name } = request.body
 
     try {

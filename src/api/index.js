@@ -1,14 +1,14 @@
 import express from 'express'
 import listEndpoints from 'express-list-endpoints'
 import Routes from './routes'
-import { AuthMiddleware, TryCatchMiddleware } from './middlewares'
+import { AuthMiddleware, TryCatchMiddleware, ValidatorMiddleware } from './middlewares'
 
 const api = (config) => {
   const { firebase } = config
   const app = express()
   const router = express.Router()
   const auth = AuthMiddleware(firebase)
-  const routes = Routes({ router, auth, tryCatch: TryCatchMiddleware, firebase })
+  const routes = Routes({ router, auth, tryCatch: TryCatchMiddleware, validator: ValidatorMiddleware, firebase })
 
   app.use(express.json()) // For parsing application/json
   app.use(express.urlencoded({ extended: true }))
