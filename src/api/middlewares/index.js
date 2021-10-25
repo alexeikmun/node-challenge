@@ -1,7 +1,2 @@
-import AuthMiddleware from './auth.middleware'
-import TryCatchMiddleware from './try-catch.middleware'
-
-export {
-  AuthMiddleware,
-  TryCatchMiddleware
-}
+export { default as AuthMiddleware } from './auth.middleware'
+export { default as TryCatchMiddleware } from './try-catch.middleware'

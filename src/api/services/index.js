@@ -1,9 +1,3 @@
-import AuthService from './auth.services'
-import UserService from './user.service'
-import GoalService from './goal.service'
-
-export {
-  AuthService,
-  UserService,
-  GoalService
-}
+export { default as AuthService } from './auth.services'
+export { default as UserService } from './user.service'
+export { default as GoalService } from './goal.service'

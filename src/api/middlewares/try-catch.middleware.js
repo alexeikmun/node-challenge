@@ -1,10 +1,8 @@
-const TryCatchMiddleware = (endpoint) => {
-  return async (request, response, next) => {
-    try {
-      await endpoint(request, response, next)
-    } catch (error) {
-      next(error)
-    }
+const TryCatchMiddleware = (endpoint) => async (request, response, next) => {
+  try {
+    return await endpoint(request, response, next)
+  } catch (error) {
+    return next(error)
   }
 }
 

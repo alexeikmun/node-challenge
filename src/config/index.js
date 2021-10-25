@@ -1,7 +1,2 @@
-import setupDatabase from './database.config.js'
-import setupFirebase from './firebase.config'
-
-export {
-  setupDatabase,
-  setupFirebase
-}
+export { default as setupDatabase } from './database.config'
+export { default as setupFirebase } from './firebase.config'

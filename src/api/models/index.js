@@ -1,7 +1,2 @@
-import UserModel from './user.model'
-import GoalModel from './goal.model'
-
-export {
-  UserModel,
-  GoalModel
-}
+export { default as UserModel } from './user.model'
+export { default as GoalModel } from './goal.model'
