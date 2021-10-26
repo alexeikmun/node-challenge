@@ -18,7 +18,10 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
-    "nodemon": "^2.0.14"
+    "jest": "^27.3.1",
+    "mongodb-memory-server": "^7.5.1",
+    "nodemon": "^2.0.14",
+    "supertest": "^6.1.6"
   },
   "name": "youcan-api",
   "description": "YouCan is a mobile application to archive your goals to stay motivated to accomplish it.",
@@ -26,9 +29,10 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
+    "test:watch": "npm run test -- --watch",
     "lint": "eslint --fix ./src",
-    "start": "nodemon --exec \"npm run lint && babel-node src\""
+    "start": "nodemon --exec \"npm run lint && babel-node src && npm run test &\""
   },
   "repository": {
     "type": "git",

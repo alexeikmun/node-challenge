@@ -12,5 +12,11 @@
         "sourceType": "module"
     },
     "rules": {
-    }
+    },
+    "globals": {
+        "describe": true,
+        "test": true,
+        "request": true
+    },
+    "ignorePatterns": ["src/__tests__/*", "src/__mocks__/*"]
 }
