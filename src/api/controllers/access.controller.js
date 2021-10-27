@@ -16,7 +16,7 @@ const AccessController = ({ router, firebase, tryCatch, validator }) => {
 
       return response.send({ access_token: token, token_type: 'bearer' })
     } catch (error) {
-      console.log('error -->', error)
+      console.log(error)
       return response.status(STATUS_CODE_BAD_REQUEST).send({ code: -1, message: i18n.__('access.user-already-exist') })
     }
   }))

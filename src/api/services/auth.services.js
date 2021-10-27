@@ -6,20 +6,25 @@ const AuthService = () => {
       : null
 
   const getUserInfo = async (auth, token) => await auth.auth().verifyIdToken(token)
-
   const createToken = async (auth, authId) => await auth.auth().createCustomToken(authId)
+  const createUser = async (auth, email, password) => await auth.auth().createUser({
+    email,
+    password
+  })
+  const getUserByEmail = async (auth, email) => await auth.auth().getUserByEmail(email)
 
-  const createUser = async (auth, email, password) => {
-    const user = await auth.auth().createUser({ email, password })
-
-    return user
+  const deleteUserByEmail = async (auth, email) => {
+    const user = await getUserByEmail(auth, email)
+    return await auth.auth().deleteUser(user.uid)
   }
 
   return {
     getToken,
     getUserInfo,
     createToken,
-    createUser
+    createUser,
+    getUserByEmail,
+    deleteUserByEmail
   }
 }
 
