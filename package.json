@@ -3,8 +3,10 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-list-endpoints": "^6.0.0",
+    "express-validator": "^6.13.0",
     "firebase": "^9.1.3",
     "firebase-admin": "^10.0.0",
+    "i18n": "^0.13.3",
     "mongoose": "^6.0.11"
   },
   "devDependencies": {
@@ -16,7 +18,10 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
-    "nodemon": "^2.0.14"
+    "jest": "^27.3.1",
+    "mongodb-memory-server": "^7.5.1",
+    "nodemon": "^2.0.14",
+    "supertest": "^6.1.6"
   },
   "name": "youcan-api",
   "description": "YouCan is a mobile application to archive your goals to stay motivated to accomplish it.",
@@ -24,7 +29,8 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage --detectOpenHandles --silent",
+    "test:watch": "npm run test -- --watch",
     "lint": "eslint --fix ./src",
     "start": "nodemon --exec \"npm run lint && babel-node src\""
   },

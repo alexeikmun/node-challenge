@@ -1,0 +1,8 @@
+{
+  "api.error": "Something wrong happend, please try again!",
+  "test.message":"Hellow world!",
+  "access.user-already-exist": "The user already exist",
+  "user-validator.email": "Must be a valid email",
+  "user-validator.password": "At least 8 characters",
+  "user-validator.name": "The name is invalid"
+}

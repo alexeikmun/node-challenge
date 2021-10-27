@@ -1,20 +1,25 @@
-import { AuthService } from '../services'
+import i18n from 'i18n'
+import { AuthService, UserService } from '../services'
+import { userValidator } from '../validators'
 
-const AccessController = ({ router, firebase }) => {
+const AccessController = ({ router, firebase, tryCatch, validator }) => {
   const authService = AuthService()
+  const userService = UserService()
+  const { STATUS_CODE_BAD_REQUEST } = process.env
 
-  router.post('/user/sign-up', async (request, response) => {
-    const { email, password } = request.body
-
+  router.post('/user/sign-up', userValidator, validator, tryCatch(async (request, response) => {
+    const { email, password, name } = request.body
     try {
-      const user = await authService.createUser(firebase, email, password)
-      const token = await authService.createToken(firebase, user.uid)
+      const { uid } = await authService.createUser(firebase, email, password)
+      await userService.createUser({ name, email, authId: uid })
+      const token = await authService.createToken(firebase, uid)
 
       return response.send({ access_token: token, token_type: 'bearer' })
     } catch (error) {
-      return response.status(500).send({ code: -1, message: 'Couldn´t create the user' })
+      console.log(error)
+      return response.status(STATUS_CODE_BAD_REQUEST).send({ code: -1, message: i18n.__('access.user-already-exist') })
     }
-  })
+  }))
 
   return router
 }
