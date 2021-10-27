@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const goalSchema = new Schema({
-  email: String,
+  emailS: String,
   name: String
 })
 
