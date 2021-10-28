@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "ignore": ["*.test.js", "fixtures/*", "__tests__", "src/__tests__/", "src/__tests__/*", "src/__tests__/*/*.test.js"]
+}
