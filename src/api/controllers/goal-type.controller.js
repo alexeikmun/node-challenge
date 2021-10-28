@@ -16,6 +16,8 @@ const GoalTypeController = ({ router, auth, tryCatch, validator }) => {
 
     return response.send(goalTypes)
   }))
+
+  return router
 }
 
 export default GoalTypeController
