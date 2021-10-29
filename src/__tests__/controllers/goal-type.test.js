@@ -71,4 +71,20 @@ describe('GOAL_TYPE', () => {
       })
     })
   })
+
+  describe('GET: /goal-type', () => {
+    describe('Missing token', () => {
+      it ('should be response Unauthorized', async () => {
+        const response = await request(app).get('/api/v1/goal-type')
+        expect(response.statusCode).toBe(401)
+      })
+    })
+
+    describe('Valid request', () => {
+      it ('should be response OK', async () => {
+        const response = await request(app).get('/api/v1/goal-type').auth(token.body.access_token, {type: 'bearer'})
+        expect(response.statusCode).toBe(200)
+      })
+    })
+  })
 })
