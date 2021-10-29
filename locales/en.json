@@ -1,11 +1,10 @@
 {
 	"api.error": "Something wrong happend, please try again!",
 	"api.already-exist": "The resource already exist!",
+	"api.name": "The name must be valid",
+	"api.description": "The description must be valid",
+	"api.email": "Must be a valid email",
 	"test.message": "Hellow world!",
 	"access.user-already-exist": "The user already exist",
-	"user-validator.email": "Must be a valid email",
-	"user-validator.password": "At least 8 characters",
-	"user-validator.name": "The name is invalid",
-	"goal-type-validator.name": "goal-type-validator.name",
-	"goal-type-validator.description": "goal-type-validator.description"
+	"user-validator.password": "At least 8 characters"
 }
