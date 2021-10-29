@@ -3,5 +3,8 @@
 	"user-validator.email": "user-validator.email",
 	"user-validator.password": "user-validator.password",
 	"user-validator.name": "user-validator.name",
-	"access.user-already-exist": "access.user-already-exist"
+	"access.user-already-exist": "access.user-already-exist",
+	"goal-type-validator.name": "goal-type-validator.name",
+	"goal-type-validator.description": "goal-type-validator.description",
+	"api.already-exist": "api.already-exist"
 }

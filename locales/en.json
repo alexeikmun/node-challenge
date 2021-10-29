@@ -1,5 +1,6 @@
 {
 	"api.error": "Something wrong happend, please try again!",
+	"api.already-exist": "The resource already exist!",
 	"test.message": "Hellow world!",
 	"access.user-already-exist": "The user already exist",
 	"user-validator.email": "Must be a valid email",
