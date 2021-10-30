@@ -2,7 +2,10 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const notificationSchema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: true
+  },
   description: String,
   active: {
     type: Boolean,

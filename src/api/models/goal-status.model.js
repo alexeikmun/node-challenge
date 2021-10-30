@@ -2,10 +2,13 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const goalStatusSchema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: true
+  },
   description: String,
   active: {
-    type: String,
+    type: Boolean,
     default: true
   },
   createdDate: Date
