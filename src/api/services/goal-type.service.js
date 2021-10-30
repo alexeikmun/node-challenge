@@ -1,4 +1,4 @@
-import { GoalTypeModel } from '../models/goal-type.model'
+import { GoalTypeModel } from '../models'
 
 const GoalTypeService = () => {
   const createGoalType = async (goalType) => await GoalTypeModel.create(goalType)

@@ -11,7 +11,7 @@ const GoalStatusController = ({ router, auth, validator, tryCatch }) => {
     const exist = await goalStatusService.existGoalStatus({ name })
     if (exist) {
       return response.status(STATUS_CODE_BAD_REQUEST).send({
-        code: STATUS_CODE_BAD_REQUEST,
+        code: Number(STATUS_CODE_BAD_REQUEST),
         message: i18n.__('api.already-exist')
       })
     }

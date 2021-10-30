@@ -6,5 +6,8 @@
 	"access.user-already-exist": "access.user-already-exist",
 	"goal-type-validator.name": "goal-type-validator.name",
 	"goal-type-validator.description": "goal-type-validator.description",
-	"api.already-exist": "api.already-exist"
+	"api.already-exist": "api.already-exist",
+	"api.name": "api.name",
+	"api.description": "api.description",
+	"api.email": "api.email"
 }
