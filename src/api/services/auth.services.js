@@ -10,7 +10,7 @@ const AuthService = () => {
 
   const getUserInfo = async (auth, token) => await auth.auth().verifyIdToken(token)
   const getUserByEmail = async (auth, email) => await auth.auth().getUserByEmail(email)
-  const createToken = async (auth, authId) => await auth.auth().createCustomToken(authId, { user: 'leonel.contrerasn@gmail.com' })
+  const createToken = async (auth, authId, user) => await auth.auth().createCustomToken(authId, user)
   const createUser = async (auth, email, password) => await auth.auth().createUser({
     email,
     password

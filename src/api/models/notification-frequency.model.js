@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const { Schema } = mongoose
 
-const notificationSchema = new Schema({
+const notificationFrequencySchema = new Schema({
   name: {
     type: String,
     unique: true
@@ -17,6 +17,6 @@ const notificationSchema = new Schema({
   }
 })
 
-const NotificationFrequencyModel = mongoose.model('notification', notificationSchema)
+const NotificationFrequencyModel = mongoose.model('notification', notificationFrequencySchema)
 
-export { notificationSchema, NotificationFrequencyModel }
+export { notificationFrequencySchema, NotificationFrequencyModel }

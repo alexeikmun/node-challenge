@@ -1,18 +1,36 @@
-import { GoalService } from '../services'
-import { GoalValidator } from '../validators'
+import { GoalService, GoalTypeService, NotificationFrequencyService } from '../services'
+import { goalValidator } from '../validators'
+import i18n from 'i18n'
 
 const GoalController = ({ router, auth, validator, tryCatch }) => {
   const goalService = GoalService()
+  const goalTypeService = GoalTypeService()
+  const notificationFrequencyService = NotificationFrequencyService()
+  const { STATUS_CODE_BAD_REQUEST } = process.env
 
   router.post('/goal', auth, goalValidator, validator, tryCatch(async (request, response) => {
     const { name, description, goalType, notificationFrequency, endDate } = request.body
-    // Get the information of the user
-    // Get the information of goalType, notificationFrequency
-    // Create the goal
-    
-    const goal = goalService.createGoal({ email, name })
+    const { user } = request
+    const goalTypeData = await goalTypeService.getGoalTypeById(goalType.id)
+    const notificationFrequencyData = await notificationFrequencyService.getNotificationFrequencyById(notificationFrequency.id)
 
-    return response.send(goal)
+    if (goalTypeData && notificationFrequencyData) {
+      const goal = await goalService.createGoal({
+        name,
+        description,
+        user,
+        goalType,
+        notificationFrequency,
+        endDate
+      })
+
+      return response.send(goal)
+    } else {
+      return response.status(STATUS_CODE_BAD_REQUEST).send({
+        code: Number(STATUS_CODE_BAD_REQUEST),
+        message: i18n.__('goal-controller.invalid-goal-frequency')
+      })
+    }
   }))
 }
 

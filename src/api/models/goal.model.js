@@ -25,7 +25,7 @@ const goalSchema = new Schema({
   user: {
     type: userSchema
   },
-  goalStatus:{
+  goalStatus: {
     type: goalStatusSchema,
     default: {
       _id: DEFAULT_GOAL_STATUS_ID,
@@ -36,7 +36,7 @@ const goalSchema = new Schema({
     type: goalTypeSchema,
     default: {
       _id: DEFAULT_GOAL_TYPE_ID,
-      name: DEFAULT_GOAL_TYPE_NAME,
+      name: DEFAULT_GOAL_TYPE_NAME
     }
   },
   notificationFrequency: {

@@ -11,8 +11,8 @@ const AccessController = ({ router, firebase, tryCatch, validator }) => {
     const { email, password, name } = request.body
     try {
       const { uid } = await authService.createUser(firebase, email, password)
-      await userService.createUser({ name, email, authId: uid })
-      const token = await authService.createToken(firebase, uid)
+      const user = await userService.createUser({ name, email, authId: uid })
+      const token = await authService.createToken(firebase, uid, user)
 
       return response.send({ access_token: token, token_type: 'bearer' })
     } catch (error) {

@@ -6,5 +6,6 @@
 	"api.email": "Must be a valid email",
 	"test.message": "Hellow world!",
 	"access.user-already-exist": "The user already exist",
-	"user-validator.password": "At least 8 characters"
+	"user-validator.password": "At least 8 characters",
+	"goal-controller.invalid-goal-frequency": "The goal type or frequency are invalid"
 }
