@@ -4,8 +4,6 @@ const ValidatorMiddleware = (request, response, next) => {
   const { STATUS_CODE_BAD_REQUEST, CODE_VALIDATION_ERROR } = process.env
   const errors = validationResult(request)
 
-  console.log('request -->', request.body)
-
   return (errors.isEmpty())
     ? next()
     : response.status(STATUS_CODE_BAD_REQUEST).send({

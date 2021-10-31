@@ -31,7 +31,7 @@
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'",
-    "test": "jest --coverage --detectOpenHandles",
+    "test": "jest --coverage --silent --detectOpenHandles",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint --fix ./src",
     "start": "nodemon --exec \"npm run lint && babel-node src\""
