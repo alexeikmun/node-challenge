@@ -11,7 +11,10 @@ const goalTypeSchema = new Schema({
     type: Boolean,
     default: true
   },
-  createdDate: Date
+  createdDate: {
+    type: Date,
+    default: Date.now()
+  }
 })
 
 const GoalTypeModel = mongoose.model('goalType', goalTypeSchema)

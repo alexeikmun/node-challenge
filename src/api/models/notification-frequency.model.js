@@ -11,7 +11,10 @@ const notificationSchema = new Schema({
     type: Boolean,
     default: true
   },
-  createdDate: Date
+  createdDate: {
+    type: Date,
+    default: Date.now()
+  }
 })
 
 const NotificationFrequencyModel = mongoose.model('notification', notificationSchema)
