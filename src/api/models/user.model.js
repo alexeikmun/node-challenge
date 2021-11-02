@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const { Schema } = mongoose
 
-const UserSchema = new Schema({
+const userSchema = new Schema({
   authId: {
     type: String,
     unique: true
@@ -18,6 +18,4 @@ const UserSchema = new Schema({
   }
 })
 
-const UserModel = mongoose.model('user', UserSchema)
-
-export default UserModel
+export default mongoose.model('user', userSchema)

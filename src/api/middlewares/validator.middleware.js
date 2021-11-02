@@ -7,7 +7,7 @@ const ValidatorMiddleware = (request, response, next) => {
   return (errors.isEmpty())
     ? next()
     : response.status(STATUS_CODE_BAD_REQUEST).send({
-      code: CODE_VALIDATION_ERROR,
+      code: Number(CODE_VALIDATION_ERROR),
       message: errors.array()
     })
 }

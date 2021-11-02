@@ -1,8 +1,14 @@
 {
-  "api.error": "Something wrong happend, please try again!",
-  "test.message":"Hellow world!",
-  "access.user-already-exist": "The user already exist",
-  "user-validator.email": "Must be a valid email",
-  "user-validator.password": "At least 8 characters",
-  "user-validator.name": "The name is invalid"
+	"api.error": "Something wrong happend, please try again!",
+	"api.already-exist": "The resource already exist!",
+	"api.name": "The name must be valid",
+	"api.description": "The description must be valid",
+	"api.email": "Must be a valid email",
+	"test.message": "Hellow world!",
+	"access.user-already-exist": "The user already exist",
+	"user-validator.password": "At least 8 characters",
+	"goal-controller.invalid-goal-frequency": "The goal type or frequency are invalid",
+	"goal-validator.invalid-goal-type": "Please select a valid goal type",
+	"goal-validator.invalid-frequency": "Please select a valida notification frequency",
+	"goal-validator.invalid-endDate": "Please select a valid end date"
 }
