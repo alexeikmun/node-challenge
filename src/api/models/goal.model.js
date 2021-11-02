@@ -1,65 +1,67 @@
 import mongoose from 'mongoose'
 const { Schema } = mongoose
 
-/* const {
-  DEFAULT_GOAL_STATUS_ID,
-  DEFAULT_GOAL_STATUS_NAME,
-  DEFAULT_GOAL_TYPE_ID,
-  DEFAULT_GOAL_TYPE_NAME,
-  DEFAULT_NOTIFICATION_FREQUENCY_ID,
-  DEFAULT_NOTIFICATION_FREQUENCY_NAME
-} = process.env */
+const createGoalModel = () => {
+  const {
+    DEFAULT_GOAL_STATUS_ID,
+    DEFAULT_GOAL_STATUS_NAME,
+    DEFAULT_GOAL_TYPE_ID,
+    DEFAULT_GOAL_TYPE_NAME,
+    DEFAULT_NOTIFICATION_FREQUENCY_ID,
+    DEFAULT_NOTIFICATION_FREQUENCY_NAME
+  } = process.env
 
-const goalSchema = new Schema({
-  name: String,
-  description: String,
-  endDate: {
-    type: Date,
-    default: Date.now()
-  },
-  user: {
-    authId: String,
-    email: {
-      type: String,
-      match: /.+@.+\..+/
-    }
-  },
-  goalStatus: {
-    id: {
-      type: String,
-      default: 'Hola'
+  const goalSchema = new Schema({
+    name: String,
+    description: String,
+    endDate: {
+      type: Date,
+      default: Date.now()
     },
-    name: {
-      type: String,
-      default: 'Hola'
-    }
-  },
-  goalType: {
-    id: {
-      type: String,
-      default: 'Hola'
+    user: {
+      authId: String,
+      email: {
+        type: String,
+        match: /.+@.+\..+/
+      }
     },
-    name: {
-      type: String,
-      default: 'Hola'
-    }
-  },
-  notificationFrequency: {
-    id: {
-      type: String,
-      default: 'Hola'
+    goalStatus: {
+      id: {
+        type: String,
+        default: DEFAULT_GOAL_STATUS_ID
+      },
+      name: {
+        type: String,
+        default: DEFAULT_GOAL_STATUS_NAME
+      }
     },
-    name: {
-      type: String,
-      default: 'Hola'
+    goalType: {
+      id: {
+        type: String,
+        default: DEFAULT_GOAL_TYPE_ID
+      },
+      name: {
+        type: String,
+        default: DEFAULT_GOAL_TYPE_NAME
+      }
+    },
+    notificationFrequency: {
+      id: {
+        type: String,
+        default: DEFAULT_NOTIFICATION_FREQUENCY_ID
+      },
+      name: {
+        type: String,
+        default: DEFAULT_NOTIFICATION_FREQUENCY_NAME
+      }
+    },
+    createdDate: {
+      type: Date,
+      default: Date.now()
     }
-  },
-  createdDate: {
-    type: Date,
-    default: Date.now()
-  }
-})
+  })
 
-const GoalModel = mongoose.model('goal', goalSchema)
+  return mongoose.model('goal', goalSchema)
+}
 
-export default GoalModel
+export default createGoalModel

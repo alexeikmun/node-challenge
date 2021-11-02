@@ -5,7 +5,7 @@ const path = require('path')
 const { MongoMemoryServer } = require('mongodb-memory-server')
 const mongoose = require('mongoose')
 const { setupTranslate, setupFirebase } = require('../../providers')
-const { AuthService, GoalTypeService, NotificationFrequencyService } = require('../../api/services')
+const { AuthService } = require('../../api/services')
 const api = require('../../api')
 const { 
    user,
@@ -16,7 +16,6 @@ const {
    goalInvalidCatalogue 
 } = require('../../__mocks__')
 
-const { response } = require('express')
 
 describe('GOAL', () => {
   let app = {}
@@ -25,8 +24,6 @@ describe('GOAL', () => {
   let goalTypeData = {}
   let notificationFrequencyData = {}
   const authService = AuthService()
-  const goalTypeService = GoalTypeService()
-  const notificationFrequencyService = NotificationFrequencyService()
 
   beforeAll(async () => {
     dotenv.config()
@@ -46,10 +43,6 @@ describe('GOAL', () => {
     notificationFrequencyData = await request(app).post('/api/v1/notification-frequency').auth(token.body.access_token, {
       type: 'bearer'
     }).send(notificationFrequency)
-
-    console.log('------------------------------')
-    console.log('notificationFrequencyData -->', notificationFrequencyData.body)
-    console.log('goalTypeData -->', goalTypeData.body)
   })
 
   afterAll(async () => {
@@ -101,8 +94,26 @@ describe('GOAL', () => {
         const response = await request(app).post('/api/v1/goal').auth(token.body.access_token, {
           type: 'bearer'
         }).send(goal)
-        
-        console.log('response -->', response.body)
+
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toBeDefined()
+      })
+    })
+  })
+
+  describe('GET: /goal', () => {
+    describe('Missing token', () => {
+      it('Should be response Unautorized', async () => {
+        const response = await request(app).get('/api/v1/goal')
+        expect(response.statusCode).toBe(401)
+      })
+    })
+
+    describe('Valid input', () => {
+      it('Should be response OK', async () => {
+        const response = await request(app).get('/api/v1/goal').auth(token.body.access_token, {
+          type: 'bearer'
+        })
 
         expect(response.statusCode).toBe(200)
         expect(response.body).toBeDefined()

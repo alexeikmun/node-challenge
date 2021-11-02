@@ -18,6 +18,4 @@ const goalTypeSchema = new Schema({
   }
 }, catalogueTransform)
 
-const GoalTypeModel = mongoose.model('goalType', goalTypeSchema)
-
-export { goalTypeSchema, GoalTypeModel }
+export default mongoose.model('goalType', goalTypeSchema)

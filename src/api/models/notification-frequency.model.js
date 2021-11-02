@@ -18,6 +18,4 @@ const notificationFrequencySchema = new Schema({
   }
 }, catalogueTransform)
 
-const NotificationFrequencyModel = mongoose.model('notification', notificationFrequencySchema)
-
-export { notificationFrequencySchema, NotificationFrequencyModel }
+export default mongoose.model('notification', notificationFrequencySchema)
