@@ -54,7 +54,6 @@ describe('GOAL_STATUS', () => {
     describe('Valid request', () => {
       it('Should be response OK', async () => {
         const response = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, {type:'bearer'}).send(goalStatus)
-        console.log('response -->', response.body)
         expect(response.statusCode).toBe(200)
         expect(response.body).toBeDefined()
       })
