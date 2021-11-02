@@ -10,7 +10,7 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
 
   router.post('/goal', auth, goalValidator, validator, tryCatch(async (request, response) => {
     const { name, description, goalType, notificationFrequency, endDate } = request.body
-    const { user } = request
+    const { authId, email } = request.user
     const goalTypeData = await goalTypeService.getGoalTypeById(goalType.id)
     const notificationFrequencyData = await notificationFrequencyService.getNotificationFrequencyById(notificationFrequency.id)
 
@@ -18,9 +18,18 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
       const goal = await goalService.createGoal({
         name,
         description,
-        user,
-        goalType,
-        notificationFrequency,
+        user: {
+          authId,
+          email
+        },
+        goalType: {
+          id: goalTypeData._id,
+          name: goalTypeData.name
+        },
+        notificationFrequency: {
+          id: notificationFrequencyData._id,
+          name: notificationFrequencyData.name
+        },
         endDate
       })
 
@@ -31,6 +40,17 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
         message: i18n.__('goal-controller.invalid-goal-frequency')
       })
     }
+  }))
+
+  router.get('/goal', auth, tryCatch(async (request, response) => {
+    const { goalStatusId } = request.query
+    const { authId } = request.user
+    const goals = await goalService.findGoals({
+      'goalStatus.id': goalStatusId,
+      'user.authId': authId
+    })
+
+    return response.send(goals)
   }))
 }
 
