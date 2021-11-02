@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { catalogueTransform } from './transforms'
 const { Schema } = mongoose
 
 const goalTypeSchema = new Schema({
@@ -15,7 +16,7 @@ const goalTypeSchema = new Schema({
     type: Date,
     default: Date.now()
   }
-})
+}, catalogueTransform)
 
 const GoalTypeModel = mongoose.model('goalType', goalTypeSchema)
 

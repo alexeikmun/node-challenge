@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { catalogueTransform } from './transforms'
 const { Schema } = mongoose
 
 const notificationFrequencySchema = new Schema({
@@ -15,7 +16,7 @@ const notificationFrequencySchema = new Schema({
     type: Date,
     default: Date.now()
   }
-})
+}, catalogueTransform)
 
 const NotificationFrequencyModel = mongoose.model('notification', notificationFrequencySchema)
 

@@ -9,5 +9,9 @@
 	"api.already-exist": "api.already-exist",
 	"api.name": "api.name",
 	"api.description": "api.description",
-	"api.email": "api.email"
+	"api.email": "api.email",
+	"goal-controller.invalid-goal-frequency": "goal-controller.invalid-goal-frequency",
+	"goal-validator.invalid-goal-type": "goal-validator.invalid-goal-type",
+	"goal-validator.invalid-frequency": "goal-validator.invalid-frequency",
+	"goal-validator.invalid-endDate": "goal-validator.invalid-endDate"
 }
