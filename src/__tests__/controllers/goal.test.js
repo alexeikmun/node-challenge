@@ -11,6 +11,7 @@ const {
    user,
    goalType,
    notificationFrequency,
+   goalStatus,
    goal,
    goalInvalid,
    goalInvalidCatalogue 
@@ -23,6 +24,8 @@ describe('GOAL', () => {
   let token = {}
   let goalTypeData = {}
   let notificationFrequencyData = {}
+  let goalStatusData = {}
+  let goalId = ''
   const authService = AuthService()
 
   beforeAll(async () => {
@@ -43,6 +46,10 @@ describe('GOAL', () => {
     notificationFrequencyData = await request(app).post('/api/v1/notification-frequency').auth(token.body.access_token, {
       type: 'bearer'
     }).send(notificationFrequency)
+
+    goalStatusData = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, {
+      type: 'bearer'
+    }).send(goalStatus)
   })
 
   afterAll(async () => {
@@ -95,6 +102,8 @@ describe('GOAL', () => {
           type: 'bearer'
         }).send(goal)
 
+        goalId = response.body._id
+
         expect(response.statusCode).toBe(200)
         expect(response.body).toBeDefined()
       })
@@ -113,6 +122,54 @@ describe('GOAL', () => {
       it('Should be response OK', async () => {
         const response = await request(app).get('/api/v1/goal').auth(token.body.access_token, {
           type: 'bearer'
+        })
+
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toBeDefined()
+      })
+    })
+  })
+
+  describe('PUT: /goal/status/:id', () => {
+    describe('Missign token', () => {
+      it('Should be response Unauthorized', async () => {
+        const response = await request(app).put(`/api/v1/goal/status/${goalId}`).send(goalStatusData.body)
+        expect(response.statusCode).toBe(401)
+      })
+    })
+    
+    describe('Invalid input', () => {
+      it('Should be response Bad Request', async () => {
+        const response = await request(app).put(`/api/v1/goal/status/${goalId}`).auth(token.body.access_token, {
+          type: 'bearer'
+        }).send()
+        expect(response.statusCode).toBe(400)
+      })
+    })
+
+    describe('Invalid goal and goalStatus', () => {
+      it('Should be response Bad Request', async () => {
+        const response = await request(app).put(`/api/v1/goal/status/617f7df63f4770bc77b604ca`).auth(token.body.access_token, {
+          type: 'bearer'
+        }).send({
+          goalStatus: {
+            id: '617f7df63f4770bc77b604cd'
+          }
+        })
+
+        expect(response.statusCode).toBe(400)
+        expect(response.body).toBeDefined()
+        expect(response.body.code).toBe(400)
+        expect(response.body.message).toBeDefined()
+      })
+    })
+
+    describe('Valid input', () => {
+      it('Should be response OK', async () => {
+        const response = await request(app).put(`/api/v1/goal/status/${goalId}`).auth(token.body.access_token, {
+          type: 'bearer'
+        }).send({
+          goalStatus: goalStatusData.body
         })
 
         expect(response.statusCode).toBe(200)

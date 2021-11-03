@@ -1,4 +1,4 @@
-import { body } from 'express-validator'
+import { body, param } from 'express-validator'
 import i18n from 'i18n'
 
 const goalValidator = [
@@ -9,4 +9,12 @@ const goalValidator = [
   body('endDate').isDate().withMessage(() => i18n.__('goal-validator.invalid-endDate'))
 ]
 
-export default goalValidator
+const goalChangeStatusValidator = [
+  param('id').isMongoId().notEmpty().withMessage(() => i18n.__('api.id')),
+  body('goalStatus.id').isMongoId().notEmpty().withMessage(() => i18n.__('goal-validator.invalid-goal-status'))
+]
+
+export {
+  goalChangeStatusValidator,
+  goalValidator
+}

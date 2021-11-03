@@ -1,10 +1,11 @@
-import { GoalService, GoalTypeService, NotificationFrequencyService } from '../services'
-import { goalValidator } from '../validators'
+import { GoalService, GoalTypeService, GoalStatusService, NotificationFrequencyService } from '../services'
+import { goalValidator, goalChangeStatusValidator } from '../validators'
 import i18n from 'i18n'
 
 const GoalController = ({ router, auth, validator, tryCatch }) => {
   const goalService = GoalService()
   const goalTypeService = GoalTypeService()
+  const goalStatusService = GoalStatusService()
   const notificationFrequencyService = NotificationFrequencyService()
   const { STATUS_CODE_BAD_REQUEST } = process.env
 
@@ -38,6 +39,36 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
       return response.status(STATUS_CODE_BAD_REQUEST).send({
         code: Number(STATUS_CODE_BAD_REQUEST),
         message: i18n.__('goal-controller.invalid-goal-frequency')
+      })
+    }
+  }))
+
+  router.put('/goal/status/:id', auth, goalChangeStatusValidator, validator, tryCatch(async (request, response) => {
+    const { id } = request.params
+    const { goalStatus } = request.body
+    const { authId } = request.user
+
+    const goal = await goalService.findGoal({
+      'goal._id': id,
+      'user.authId': authId
+    })
+
+    const goalStatusData = await goalStatusService.getGoalStatusById(goalStatus.id)
+
+    if (goal && goalStatusData) {
+      await goalService.updateGoal(id, {
+        $set: {
+          goalStatus: {
+            id: goalStatusData.id,
+            name: goalStatusData.name
+          }
+        }
+      })
+      return response.send({ id })
+    } else {
+      return response.status(STATUS_CODE_BAD_REQUEST).send({
+        code: Number(STATUS_CODE_BAD_REQUEST),
+        message: i18n.__('goal-controller.invalid-goal')
       })
     }
   }))
