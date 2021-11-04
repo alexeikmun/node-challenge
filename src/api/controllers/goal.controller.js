@@ -1,5 +1,5 @@
 import { GoalService, GoalTypeService, GoalStatusService, NotificationFrequencyService } from '../services'
-import { goalValidator, goalChangeStatusValidator } from '../validators'
+import { goalValidator, goalChangeStatusValidator, idValidator } from '../validators'
 import i18n from 'i18n'
 
 const GoalController = ({ router, auth, validator, tryCatch }) => {
@@ -71,6 +71,18 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
         message: i18n.__('goal-controller.invalid-goal')
       })
     }
+  }))
+
+  router.get('/goal/:id', auth, idValidator, validator, tryCatch(async (request, response) => {
+    const { authId } = request.user
+    const { id } = request.params
+
+    const goal = await goalService.findGoal({
+      _id: id,
+      'user.authId': authId
+    })
+
+    return response.send(goal)
   }))
 
   router.get('/goal', auth, tryCatch(async (request, response) => {
