@@ -2,6 +2,7 @@ require('regenerator-runtime/runtime')
 const request = require('supertest')
 const dotenv = require('dotenv')
 const path = require('path')
+const luxon = require('luxon')
 const { MongoMemoryServer } = require('mongodb-memory-server')
 const mongoose = require('mongoose')
 const { setupTranslate, setupFirebase } = require('../../providers')
@@ -12,6 +13,7 @@ const {
    user,
    rightThing
 } = require('../../__mocks__')
+const { response } = require('express')
 
 
 describe('RIGHT-THINGS', () => {
@@ -67,6 +69,42 @@ describe('RIGHT-THINGS', () => {
         expect(response.statusCode).toBe(200)
         expect(response.body).toBeDefined()
         expect(response.body._id).toBeDefined()
+      })
+    })
+  })
+
+  describe('GET: /right-thing/today', () => {
+    const timeZone = luxon.DateTime.now().zone.name
+
+    describe('Missing token', () => {
+      it('Should be response Unautorized', async () => {
+        const response = await request(app).get(`/api/v1/right-thing/today?timeZone=${timeZone}`)
+        expect(response.statusCode).toBe(401)
+      })
+    })
+
+    describe('Invalid input', () => {
+      it('Should be response Bad Request', async () => {
+        const response = await request(app).get(`/api/v1/right-thing/today`).auth(token.body.access_token, {
+          type: 'bearer'
+        })
+
+        expect(response.statusCode).toBe(400)
+        expect(response.body).toBeDefined()
+        expect(response.body.code).toBe(400)
+        expect(response.body.message).toBeDefined()
+      })
+    })
+
+    describe('Valid input', () => {
+      it('Should be response OK', async () => {
+        const response = await request(app).get(`/api/v1/right-thing/today?timeZone=${timeZone}`).auth(token.body.access_token, {
+          type: 'bearer'
+        })
+
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toBeDefined()
+        expect(response.body.created).toBeTruthy()
       })
     })
   })
