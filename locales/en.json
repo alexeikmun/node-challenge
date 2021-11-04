@@ -8,6 +8,7 @@
 	"test.message": "Hellow world!",
 	"access.user-already-exist": "The user already exist",
 	"generic-validator.id": "The request's id is required",
+	"generic-validator.time-zone": "The time zone is required",
 	"user-validator.password": "At least 8 characters",
 	"goal-controller.invalid-goal-frequency": "The goal type or frequency are invalid",
 	"goal-controller.invalid-goal": "I can´t find the goal or the new status, please select another one",
