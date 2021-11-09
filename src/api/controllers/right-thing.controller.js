@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { RightThingService } from '../services'
-import { rightThingValidator, timeZoneValidator } from '../validators'
+import { rightThingValidator, timeZoneValidator, idValidator } from '../validators'
 
 const RightThingController = ({ router, auth, validator, tryCatch }) => {
   const rightThingService = RightThingService()
@@ -13,6 +13,18 @@ const RightThingController = ({ router, auth, validator, tryCatch }) => {
       authId,
       email,
       description
+    })
+
+    return response.send(rightThing)
+  }))
+
+  router.delete('/right-thing/:id', auth, idValidator, validator, tryCatch(async (request, response) => {
+    const { authId } = request.user
+    const { id } = request.params
+
+    const rightThing = await rightThingService.deleteRightThing({
+      _id: id,
+      'user.authId': authId
     })
 
     return response.send(rightThing)
