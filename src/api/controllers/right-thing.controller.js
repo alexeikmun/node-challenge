@@ -45,6 +45,8 @@ const RightThingController = ({ router, auth, validator, tryCatch }) => {
 
     return rightThing ? response.send({ created: true }) : response.send({ created: false })
   }))
+
+  return router
 }
 
 export default RightThingController

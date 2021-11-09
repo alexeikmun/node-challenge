@@ -42,26 +42,26 @@ describe('GOAL_STATUS', () => {
 
     describe('Invalid request', () => {
       it('Should be response bad request', async () => {
-        const response = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, {type:'bearer'}).send(goalStatusInvalid)
+        const response = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, { type: 'bearer' }).send(goalStatusInvalid)
         expect(response.statusCode).toBe(400)
         expect(response.body).toBeDefined()
         expect(response.body.code).toBe(400)
         expect(response.body.message).toBeDefined()
       })
     })
-       
+
 
     describe('Valid request', () => {
       it('Should be response OK', async () => {
-        const response = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, {type:'bearer'}).send(goalStatus)
+        const response = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, { type: 'bearer' }).send(goalStatus)
         expect(response.statusCode).toBe(200)
         expect(response.body).toBeDefined()
       })
     })
-    
+
     describe('Already exists', () => {
-      it ('Should be response bad request', async () => {
-        const response = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, {type: 'bearer'}).send(goalStatus)
+      it('Should be response bad request', async () => {
+        const response = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, { type: 'bearer' }).send(goalStatus)
         expect(response.statusCode).toBe(400)
         expect(response.body.code).toBe(400)
         expect(response.body.message).toBeDefined()
@@ -71,11 +71,21 @@ describe('GOAL_STATUS', () => {
 
   describe('GET: /goal-status', () => {
     describe('Missing token', () => {
-
+      it('Should be response Unauthorized', async () => {
+        const response = await request(app).get('/api/v1/goal-status')
+        expect(response.statusCode).toBe(401)
+      })
     })
 
     describe('Valid request', () => {
+      it('Should be response OK', async () => {
+        const response = await request(app).get('/api/v1/goal-status').auth(token.body.access_token, {
+          type: 'bearer'
+        })
 
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toBeDefined()
+      })
     })
   })
 })
