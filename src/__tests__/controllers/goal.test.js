@@ -211,4 +211,36 @@ describe('GOAL', () => {
       })
     })
   })
+
+  describe('DELETE: /goal/:id', () => {
+    describe('Missing token', () => {
+      it('Should be response Unauthorized', async() => {
+        const response = await request(app).delete(`/api/v1/goal/${goalId}`)
+        expect(response.statusCode).toBe(401)
+      })
+    })
+
+    describe('Invalid input', () => {
+      it('Should be response Bad Request', async () => {
+        const response = await request(app).delete(`/api/v1/goal/${goalId}a`).auth(token.body.access_token, {
+          type: 'bearer'
+        })
+        expect(response.statusCode).toBe(400)
+        expect(response.body).toBeDefined()
+        expect(response.body.code).toBe(400)
+        expect(response.body.message).toBeDefined()
+      })
+    })
+
+    describe('Valid input', () => {
+      it('Should be response OK', async () => {
+        const response = await request(app).delete(`/api/v1/goal/${goalId}`).auth(token.body.access_token, {
+          type: 'bearer'
+        })
+
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toBeDefined()
+      })
+    })
+  })
 })

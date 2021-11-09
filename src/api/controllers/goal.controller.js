@@ -43,6 +43,41 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
     }
   }))
 
+  router.delete('/goal/:id', auth, idValidator, validator, tryCatch(async (request, response) => {
+    const { authId } = request.user
+    const { id } = request.params
+
+    const goal = await goalService.deleteGoal({
+      _id: id,
+      'user.authId': authId
+    })
+
+    return response.send(goal)
+  }))
+
+  router.get('/goal', auth, tryCatch(async (request, response) => {
+    const { goalStatusId } = request.query
+    const { authId } = request.user
+    const goals = await goalService.findGoals({
+      'goalStatus.id': goalStatusId,
+      'user.authId': authId
+    })
+
+    return response.send(goals)
+  }))
+
+  router.get('/goal/:id', auth, idValidator, validator, tryCatch(async (request, response) => {
+    const { authId } = request.user
+    const { id } = request.params
+
+    const goal = await goalService.findGoal({
+      _id: id,
+      'user.authId': authId
+    })
+
+    return response.send(goal)
+  }))
+
   router.put('/goal/status/:id', auth, goalChangeStatusValidator, validator, tryCatch(async (request, response) => {
     const { id } = request.params
     const { goalStatus } = request.body
@@ -71,29 +106,6 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
         message: i18n.__('goal-controller.invalid-goal')
       })
     }
-  }))
-
-  router.get('/goal/:id', auth, idValidator, validator, tryCatch(async (request, response) => {
-    const { authId } = request.user
-    const { id } = request.params
-
-    const goal = await goalService.findGoal({
-      _id: id,
-      'user.authId': authId
-    })
-
-    return response.send(goal)
-  }))
-
-  router.get('/goal', auth, tryCatch(async (request, response) => {
-    const { goalStatusId } = request.query
-    const { authId } = request.user
-    const goals = await goalService.findGoals({
-      'goalStatus.id': goalStatusId,
-      'user.authId': authId
-    })
-
-    return response.send(goals)
   }))
 }
 
