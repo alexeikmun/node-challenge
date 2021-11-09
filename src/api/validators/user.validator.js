@@ -7,4 +7,11 @@ const userValidator = [
   body('name').isString().notEmpty().trim().escape().withMessage(() => i18n.__('api.name'))
 ]
 
-export default userValidator
+const userUpdateValidator = [
+  body('name').isString().notEmpty().trim().escape().withMessage(() => i18n.__('api.name'))
+]
+
+export {
+  userValidator,
+  userUpdateValidator
+}

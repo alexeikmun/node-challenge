@@ -14,7 +14,7 @@ const {
 
 const { response } = require('express')
 
-describe('RIGHT-THINGS', () => {
+describe('USER', () => {
   let app = {}
   let firebase = {}
   let token = {}
@@ -56,6 +56,43 @@ describe('RIGHT-THINGS', () => {
         expect(response.body.rightThing).toBe(0)
         expect(response.body.goalCompleted).toBe(0)
         expect(response.body.goalPending).toBe(0)
+      })
+    })
+  })
+
+  describe('UPDATE: /user', () => {
+    describe('Missing token', () => {
+      it('Should be response Unauthorized', async () => {
+        const response = await request(app).put('/api/v1/user').send({
+          name: 'New name'
+        })
+
+        expect(response.statusCode).toBe(401)
+      })
+    })
+
+    describe('Invalid input', () => {
+      it('Should be response Bad request', async () => {
+        const response = await request(app).put('/api/v1/user').auth(token.body.access_token, {
+          type: 'bearer'
+        }).send({})
+
+        expect(response.statusCode).toBe(400)
+        expect(response.body).toBeDefined()
+        expect(response.body.code).toBe(400)
+        expect(response.body.message).toBeDefined()
+      })
+    })
+
+    describe('Valid input', () => {
+      it ('Should be response OK', async () => {
+        const response = await request(app).put('/api/v1/user').auth(token.body.access_token, {
+          type: 'bearer'
+        }).send({name: 'New name'})
+
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toBeDefined()
+        expect(response.body.name).toBeDefined()
       })
     })
   })

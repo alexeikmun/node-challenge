@@ -20,11 +20,13 @@ const GoalStatusController = ({ router, auth, validator, tryCatch }) => {
     return response.send(goalStatus)
   }))
 
-  router.get('/goal-status', auth, goalStatusValidator, validator, tryCatch(async (request, response) => {
+  router.get('/goal-status', auth, tryCatch(async (request, response) => {
     const goalStatus = await goalStatusService.getGoalStatus()
 
     return response.send(goalStatus)
   }))
+
+  return router
 }
 
 export default GoalStatusController

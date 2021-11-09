@@ -107,6 +107,8 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
       })
     }
   }))
+
+  return router
 }
 
 export default GoalController
