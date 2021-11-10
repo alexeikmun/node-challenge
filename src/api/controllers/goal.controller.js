@@ -43,6 +43,54 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
     }
   }))
 
+  router.get('/goal', auth, tryCatch(async (request, response) => {
+    const { goalStatusId } = request.query
+    const { authId } = request.user
+    const goals = await goalService.findGoals({
+      'goalStatus.id': goalStatusId,
+      'user.authId': authId
+    })
+
+    return response.send(goals)
+  }))
+
+  router.put('/goal/:id', auth, idValidator, goalValidator, validator, tryCatch(async (request, response) => {
+    const { name, description, goalType, notificationFrequency, endDate } = request.body
+    const { authId, email } = request.user
+    const { id } = request.params
+
+    const goal = await goalService.findGoal({ 'goal._id': id, 'user.authId': authId})
+    const goalTypeData = await goalTypeService.getGoalTypeById(goalType.id)
+    const notificationFrequencyData = await notificationFrequencyService.getNotificationFrequencyById(notificationFrequency.id)
+
+    if (goal && goalTypeData && notificationFrequencyData) {
+      await goalService.updateGoal({ _id: id }, {
+        name,
+        description,
+        user: {
+          authId,
+          email
+        },
+        goalType: {
+          id: goalTypeData._id,
+          name: goalTypeData.name
+        },
+        notificationFrequency: {
+          id: notificationFrequencyData._id,
+          name: notificationFrequencyData.name
+        },
+        endDate
+      })
+
+      return response.send({ id })
+    } else {
+      return response.status(STATUS_CODE_BAD_REQUEST).send({
+        code: Number(STATUS_CODE_BAD_REQUEST),
+        message: i18n.__('goal-controller.update-invalid-goal')
+      })
+    }
+  }))
+
   router.delete('/goal/:id', auth, idValidator, validator, tryCatch(async (request, response) => {
     const { authId } = request.user
     const { id } = request.params
@@ -53,17 +101,6 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
     })
 
     return response.send(goal)
-  }))
-
-  router.get('/goal', auth, tryCatch(async (request, response) => {
-    const { goalStatusId } = request.query
-    const { authId } = request.user
-    const goals = await goalService.findGoals({
-      'goalStatus.id': goalStatusId,
-      'user.authId': authId
-    })
-
-    return response.send(goals)
   }))
 
   router.get('/goal/:id', auth, idValidator, validator, tryCatch(async (request, response) => {
@@ -91,7 +128,7 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
     const goalStatusData = await goalStatusService.getGoalStatusById(goalStatus.id)
 
     if (goal && goalStatusData) {
-      await goalService.updateGoal(id, {
+      await goalService.updateGoal({ _id: id }, {
         $set: {
           goalStatus: {
             id: goalStatusData.id,

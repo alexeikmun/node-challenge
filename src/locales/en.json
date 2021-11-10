@@ -15,5 +15,6 @@
 	"goal-validator.invalid-frequency": "goal-validator.invalid-frequency",
 	"goal-validator.invalid-endDate": "goal-validator.invalid-endDate",
 	"goal-validator.invalid-goal-status": "goal-validator.invalid-goal-status",
-	"goal-controller.invalid-goal": "goal-controller.invalid-goal"
+	"goal-controller.invalid-goal": "goal-controller.invalid-goal",
+	"goal-controller.update-invalid-goal": "goal-controller.update-invalid-goal"
 }

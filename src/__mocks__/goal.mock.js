@@ -8,6 +8,16 @@ const goal = {
   "endDate": "1996/08/19"
 }
 
+const goalUpdate = {
+  "name": "Test change",
+  "description": "Test change",
+  "goalType": {
+  },
+  "notificationFrequency": {
+  },
+  "endDate": "1996/08/19"
+}
+
 const goalInvalid = {
   "goalType": {
       "id": 1212
@@ -32,6 +42,7 @@ const goalInvalidCatalogue = {
 
 module.exports = {
   goal,
+  goalUpdate,
   goalInvalid,
   goalInvalidCatalogue
 }
