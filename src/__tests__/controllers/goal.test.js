@@ -13,6 +13,7 @@ const {
    notificationFrequency,
    goalStatus,
    goal,
+   goalUpdate,
    goalInvalid,
    goalInvalidCatalogue 
 } = require('../../__mocks__')
@@ -208,6 +209,56 @@ describe('GOAL', () => {
         expect(response.statusCode).toBe(200)
         expect(response.body).toBeDefined()
         expect(response.body._id).toBeDefined()
+      })
+    })
+  })
+
+  describe('PUT: /goal/:id', () => {
+    describe('Missing token', () => {
+      it('Should be response Unauthorized', async () => {
+        const response = await request(app).put(`/api/v1/goal/${goalId}`).send(goal)
+
+        expect(response.statusCode).toBe(401)
+      })
+    })
+
+    describe('Invalid input', () => {
+      it('Should be response Bad Request', async () => {
+        const response = await request(app).put(`/api/v1/goal/${goalId}a`).auth(token.body.access_token, {
+          type: 'bearer'
+        }).send(goalInvalid)
+
+        expect(response.statusCode).toBe(400)
+        expect(response.body).toBeDefined()
+        expect(response.body.code).toBe(400)
+        expect(response.body.message).toBeDefined()
+      })
+    })
+
+    describe('Invalid catalogue', () => {
+      it ('should be response Bad Request', async () => {
+        const response = await request(app).put(`/api/v1/goal/${goalId}`).auth(token.body.access_token, {
+          type: 'bearer'
+        }).send(goalInvalidCatalogue)
+
+        expect(response.statusCode).toBe(400)
+        expect(response.body).toBeDefined()
+        expect(response.body.code).toBe(400)
+        expect(response.body.message).toBeDefined()
+      })
+    })
+
+    describe('Valid input', () => {
+      it('should be response OK', async () => {
+        goalUpdate.goalType = goalTypeData.body
+        goalUpdate.notificationFrequency = notificationFrequencyData.body
+
+        const response = await request(app).put(`/api/v1/goal/${goalId}`).auth(token.body.access_token, {
+          type: 'bearer'
+        }).send(goalUpdate)
+
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toBeDefined()
       })
     })
   })
