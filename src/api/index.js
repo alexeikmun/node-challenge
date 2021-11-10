@@ -1,4 +1,7 @@
 import express from 'express'
+import helmet from 'helmet'
+import compression from 'compression'
+import cors from 'cors'
 import listEndpoints from 'express-list-endpoints'
 import Routes from './routes'
 import { AuthMiddleware, TryCatchMiddleware, ValidatorMiddleware } from './middlewares'
@@ -13,6 +16,10 @@ const api = (config) => {
 
   app.use(express.json()) // For parsing application/json
   app.use(express.urlencoded({ extended: true }))
+  app.use(compression())
+  app.use(helmet())
+  app.use(cors())
+
   app.use('/api/v1', routes)
   app.use((request, response) => response.sendStatus(STATUS_CODE_NOT_FOUND))
   app.use((error, request, response, next) => {

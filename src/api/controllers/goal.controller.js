@@ -59,7 +59,7 @@ const GoalController = ({ router, auth, validator, tryCatch }) => {
     const { authId, email } = request.user
     const { id } = request.params
 
-    const goal = await goalService.findGoal({ 'goal._id': id, 'user.authId': authId})
+    const goal = await goalService.findGoal({ 'goal._id': id, 'user.authId': authId })
     const goalTypeData = await goalTypeService.getGoalTypeById(goalType.id)
     const notificationFrequencyData = await notificationFrequencyService.getNotificationFrequencyById(notificationFrequency.id)
 
