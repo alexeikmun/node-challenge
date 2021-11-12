@@ -43,7 +43,6 @@ const UserController = ({ router, auth, validator, tryCatch, firebase }) => {
       const { image } = request.files
       const bucket = firebase.storage().bucket()
       const [files] = await bucket.getFiles({ prefix: `images/${authId}/` })
-      console.log('files -->', files)
       files.forEach(async (file) => await file.delete())
 
       const blob = bucket.file(`images/${authId}/${image.name}`)
@@ -65,9 +64,13 @@ const UserController = ({ router, auth, validator, tryCatch, firebase }) => {
     const bucket = firebase.storage().bucket()
     const [files] = await bucket.getFiles({ prefix: `images/${authId}/` })
 
-    const file = await files[0].download()
-    const base64 = file[0].toString('base64')
-    return response.send({ image: `data:${files[0].metadata.contentType};base64,${base64}` })
+    if (files[0]) {
+      const file = await files[0].download()
+      const base64 = file[0].toString('base64')
+      return response.send({ image: `data:${files[0].metadata.contentType};base64,${base64}` })
+    } else {
+      return response.send({})
+    }
   }))
 
   return router
