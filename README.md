@@ -2,7 +2,7 @@
 YouCanAPI is a the API for the mobile application to archive your goals to stay motivated to accomplish it.
 
 
-## -- About use it -- ##
+## -- How to use -- ##
 #### You want to download the project to review the code, please do it and follow the next steps: ####
 
 1. git clone https://github.com/leonelcontreras/youcan-api.git
