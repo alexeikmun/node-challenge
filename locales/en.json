@@ -10,11 +10,13 @@
 	"generic-validator.id": "The request's id is required",
 	"generic-validator.time-zone": "The time zone is required",
 	"user-validator.password": "At least 8 characters",
+	"user-controller.invalid-image": "Please send an image!",
 	"goal-controller.invalid-goal-frequency": "The goal type or frequency are invalid",
 	"goal-controller.invalid-goal": "I can´t find the goal or the new status, please select another one",
 	"goal-controller.update-invalid-goal": "I can´t find the goal or something releted to it",
 	"goal-validator.invalid-goal-type": "Please select a valid goal type",
 	"goal-validator.invalid-goal-status": "Please select a valida goal status",
 	"goal-validator.invalid-frequency": "Please select a valida notification frequency",
-	"goal-validator.invalid-endDate": "Please select a valid end date"
+	"goal-validator.invalid-endDate": "Please select a valid end date",
+	"api.user-controller.invalid-image": "api.user-controller.invalid-image"
 }
