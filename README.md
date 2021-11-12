@@ -3,29 +3,30 @@ YouCanAPI is a the API for the mobile application to archive your goals to stay 
 
 
 ## -- How to use -- ##
-#### You want to download the project to review the code, please do it and follow the next steps: ####
 
-1. git clone https://github.com/leonelcontreras/youcan-api.git
-2. cd youcan-api
-3. npm i
-4. npm start
+    You want to download the project to review the code, please do it and follow the next steps:
 
-#### Do you want to execute some test?, please do it ####
-1. npm test or npm run test:watch if you want to execute some changes
+    1. git clone https://github.com/leonelcontreras/youcan-api.git
+    2. cd youcan-api
+    3. npm i
+    4. npm start
 
-#### Dou youn want to debug the code to resolve some problems ? do it on chrome console ####
+    #### Do you want to execute some test?, please do it ####
+    1. npm test or npm run test:watch if you want to execute some changes
 
-1. npm run debug
-2. open on chrome chrome://inspect/#devices
-3. click en remote targets for the app
+    #### Dou youn want to debug the code to resolve some problems ? do it on chrome console ####
 
-#### How to ignore a debugger ####
+    1. npm run debug
+    2. open on chrome chrome://inspect/#devices
+    3. click en remote targets for the app
 
-* //eslint-disable-line
+    #### How to ignore a debugger ####
 
-#### Prepare to deploy ####
+    * //eslint-disable-line
 
-* npm run build
+    #### Prepare to deploy ####
+
+    * npm run build
 
 
 ## -- About the project -- ## 
