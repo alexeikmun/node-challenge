@@ -30,38 +30,38 @@ YouCanAPI is a the API for the mobile application to archive your goals to stay 
 
 ## -- About the project -- ## 
 
-### Technologies ###
+  ### Technologies ###
 
-  In this API we are using diferents technologies focus in solve different problems
-  when we create an API, this is with demostrative purpose, to show my experience
-  working with Node.js
+    In this API we are using diferents technologies focus in solve different problems
+    when we create an API, this is with demostrative purpose, to show my experience
+    working with Node.js
 
-- Express:
-  We are using express to create endpoints in the application, for example: GET, DELETE or Post,
-  to do that, we use the Router's express this allow me to assign endpoints to the API. additional
-  to the routes we only use express to create the API application and delegates the exposition of
-  the server to the native module http, this is to avoid incompatibility to future integrations like
-  token and also to the unit test.
+  - Express:
+    We are using express to create endpoints in the application, for example: GET, DELETE or Post,
+    to do that, we use the Router's express this allow me to assign endpoints to the API. additional
+    to the routes we only use express to create the API application and delegates the exposition of
+    the server to the native module http, this is to avoid incompatibility to future integrations like
+    token and also to the unit test.
 
-- mongoose:
-  Mongoose is an object modeler to MongoDB, and we use it to connect and interact with the database, and also
-  define the structure of the collections.
+  - mongoose:
+    Mongoose is an object modeler to MongoDB, and we use it to connect and interact with the database, and also
+    define the structure of the collections.
 
-- Slint + StandarJS:
-  To define and maintanance the way or the style of the code, we´re using these technologies, to correct some
-  spaces and basic techniques when we´re coding. This is a good way to work in a colaborative project.
+  - Slint + StandarJS:
+    To define and maintanance the way or the style of the code, we´re using these technologies, to correct some
+    spaces and basic techniques when we´re coding. This is a good way to work in a colaborative project.
 
-- express-validator:
-  We use it to apply validation and sanitization to entry data, this is a way to protect the endpoint of bad 
-  or malicious requests.
+  - express-validator:
+    We use it to apply validation and sanitization to entry data, this is a way to protect the endpoint of bad 
+    or malicious requests.
 
-- Firebase:
-  We are using two elements of firebase-admin, in one hand we have firebase Authentication, to validate identity
-  with tokens based it in oauth. In the other hand we have firebase storage to save files like image profile.  
+  - Firebase:
+    We are using two elements of firebase-admin, in one hand we have firebase Authentication, to validate identity
+    with tokens based it in oauth. In the other hand we have firebase storage to save files like image profile.  
 
-- Jest + supertest :
-  Finally we have Jest these combination of technologies to apply unit testing to all the 
-  endpoints of the application and ensure the quality of the code.
+  - Jest + supertest :
+    Finally we have Jest these combination of technologies to apply unit testing to all the 
+    endpoints of the application and ensure the quality of the code.
 
   ### Architecture and Structure ###
 
