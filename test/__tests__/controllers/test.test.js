@@ -2,8 +2,8 @@ require('regenerator-runtime/runtime')
 const request = require('supertest')
 const dotenv = require('dotenv')
 const path = require('path')
-const { setupTranslate } = require('../../providers')
-const api = require('../../api')
+const { setupTranslate } = require('../../../src/providers')
+const api = require('../../../src/api')
 const app = api.default({})
 
 beforeAll(done => {

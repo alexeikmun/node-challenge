@@ -4,13 +4,12 @@ const dotenv = require('dotenv')
 const path = require('path')
 const { MongoMemoryServer } = require('mongodb-memory-server')
 const mongoose = require('mongoose')
-const { setupTranslate, setupFirebase } = require('../../providers')
-const { AuthService } = require('../../api/services')
-const api = require('../../api')
-const { user, notificationFrequency, notificationFrequencyInvalid } = require('../../__mocks__')
-const { response } = require('express')
+const { setupTranslate, setupFirebase } = require('../../../src/providers')
+const { AuthService } = require('../../../src/api/services')
+const api = require('../../../src/api')
+const { user, goalStatus, goalStatusInvalid } = require('../../__mocks__')
 
-describe('Notification_Frequency', () => {
+describe('GOAL_STATUS', () => {
   let app = {}
   let firebase = {}
   let token = {}
@@ -33,20 +32,17 @@ describe('Notification_Frequency', () => {
     await authService.deleteUserByEmail(firebase, user.email)
   })
 
-  describe('POST: /notification-frequency', () => {
-    describe('Missing token', () => {
-      it('Should be response unauthorized', async () => {
-        const response = await request(app).post('/api/v1/notification-frequency').send(notificationFrequency)
+  describe('POST: /goal-status', () => {
+    describe('Missign token', () => {
+      it('Should be response Unauthorized', async () => {
+        const response = await request(app).post('/api/v1/goal-status').send(goalStatus)
         expect(response.statusCode).toBe(401)
       })
     })
 
-    describe('Invalid input', () => {
+    describe('Invalid request', () => {
       it('Should be response bad request', async () => {
-        const response = await request(app).post('/api/v1/notification-frequency').auth(token.body.access_token, { 
-          type: 'bearer' 
-        }).send(notificationFrequencyInvalid)
-        
+        const response = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, { type: 'bearer' }).send(goalStatusInvalid)
         expect(response.statusCode).toBe(400)
         expect(response.body).toBeDefined()
         expect(response.body.code).toBe(400)
@@ -54,43 +50,36 @@ describe('Notification_Frequency', () => {
       })
     })
 
-    describe('New NotificationFrequency', () => {
-      it('Should be response Ok', async () => {
-        const response = await request(app).post('/api/v1/notification-frequency').auth(token.body.access_token, {
-          type: 'bearer'
-        }).send(notificationFrequency)
-  
+
+    describe('Valid request', () => {
+      it('Should be response OK', async () => {
+        const response = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, { type: 'bearer' }).send(goalStatus)
         expect(response.statusCode).toBe(200)
         expect(response.body).toBeDefined()
       })
     })
 
-    describe('NotificationFrequency already exist', () => {
+    describe('Already exists', () => {
       it('Should be response bad request', async () => {
-        const response = await request(app).post('/api/v1/notification-frequency').auth(token.body.access_token, {
-          type: 'bearer'
-        }).send(notificationFrequency)
-        
+        const response = await request(app).post('/api/v1/goal-status').auth(token.body.access_token, { type: 'bearer' }).send(goalStatus)
         expect(response.statusCode).toBe(400)
-        expect(response.body).toBeDefined()
         expect(response.body.code).toBe(400)
         expect(response.body.message).toBeDefined()
       })
     })
   })
 
-  describe('GET: /notification-frequency', () => {
-    describe('Missign token', () => {
-      it('Should be response unauthorized', async () => {
-        const response = await request(app).get('/api/v1/notification-frequency')
-
+  describe('GET: /goal-status', () => {
+    describe('Missing token', () => {
+      it('Should be response Unauthorized', async () => {
+        const response = await request(app).get('/api/v1/goal-status')
         expect(response.statusCode).toBe(401)
       })
     })
 
-    describe('Valid input', () => {
+    describe('Valid request', () => {
       it('Should be response OK', async () => {
-        const response = await request(app).get('/api/v1/notification-frequency').auth(token.body.access_token, {
+        const response = await request(app).get('/api/v1/goal-status').auth(token.body.access_token, {
           type: 'bearer'
         })
 

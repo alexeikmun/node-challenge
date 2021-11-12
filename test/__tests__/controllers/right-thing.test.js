@@ -5,9 +5,9 @@ const path = require('path')
 const luxon = require('luxon')
 const { MongoMemoryServer } = require('mongodb-memory-server')
 const mongoose = require('mongoose')
-const { setupTranslate, setupFirebase } = require('../../providers')
-const { AuthService } = require('../../api/services')
-const api = require('../../api')
+const { setupTranslate, setupFirebase } = require('../../../src/providers')
+const { AuthService } = require('../../../src/api/services')
+const api = require('../../../src/api')
 
 const { 
    user,

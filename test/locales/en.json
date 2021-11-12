@@ -1,0 +1,17 @@
+{
+	"api.name": "api.name",
+	"api.description": "api.description",
+	"api.already-exist": "api.already-exist",
+	"test.message": "test.message",
+	"goal-validator.invalid-goal-type": "goal-validator.invalid-goal-type",
+	"goal-validator.invalid-frequency": "goal-validator.invalid-frequency",
+	"goal-validator.invalid-endDate": "goal-validator.invalid-endDate",
+	"goal-controller.invalid-goal-frequency": "goal-controller.invalid-goal-frequency",
+	"goal-validator.invalid-goal-status": "goal-validator.invalid-goal-status",
+	"goal-controller.invalid-goal": "goal-controller.invalid-goal",
+	"goal-controller.update-invalid-goal": "goal-controller.update-invalid-goal",
+	"api.email": "api.email",
+	"user-validator.password": "user-validator.password",
+	"access.user-already-exist": "access.user-already-exist",
+	"api.user-controller.invalid-image": "api.user-controller.invalid-image"
+}
