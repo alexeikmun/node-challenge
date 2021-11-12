@@ -10,7 +10,7 @@ YouCanAPI is a the API for the mobile application to archive your goals to stay 
 3. npm i
 4. npm start
 
-### Do you want to execute some test?, please do it ###
+#### Do you want to execute some test?, please do it ####
 1. npm test or npm run test:watch if you want to execute some changes
 
 #### Dou youn want to debug the code to resolve some problems ? do it on chrome console ####
@@ -23,7 +23,7 @@ YouCanAPI is a the API for the mobile application to archive your goals to stay 
 
 * //eslint-disable-line
 
-## Prepare to deploy ##
+#### Prepare to deploy ####
 
 * npm run build
 
