@@ -32,9 +32,9 @@ YouCanAPI is a the API for the mobile application to archive your goals to stay 
 
   ### Technologies ###
 
-    In this API we are using diferents technologies focus in solve different problems
-    when we create an API, this is with demostrative purpose, to show my experience
-    working with Node.js
+  In this API we are using diferents technologies focus in solve different problems
+  when we create an API, this is with demostrative purpose, to show my experience
+  working with Node.js
 
   - Express:
     We are using express to create endpoints in the application, for example: GET, DELETE or Post,
