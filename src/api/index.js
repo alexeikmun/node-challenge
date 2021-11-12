@@ -2,6 +2,7 @@ import express from 'express'
 import helmet from 'helmet'
 import compression from 'compression'
 import cors from 'cors'
+import fileUpload from 'express-fileupload'
 import listEndpoints from 'express-list-endpoints'
 import Routes from './routes'
 import { AuthMiddleware, TryCatchMiddleware, ValidatorMiddleware } from './middlewares'
@@ -16,6 +17,7 @@ const api = (config) => {
 
   app.use(express.json()) // For parsing application/json
   app.use(express.urlencoded({ extended: true }))
+  app.use(fileUpload())
   app.use(compression())
   app.use(helmet())
   app.use(cors())

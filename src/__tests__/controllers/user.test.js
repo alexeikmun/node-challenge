@@ -38,7 +38,7 @@ describe('USER', () => {
     await authService.deleteUserByEmail(firebase, user.email)
   })
 
-  describe('/user/stats', () => {
+  describe('GET: /user/stats', () => {
     describe('Missing token', () => {
       it('Should be response Unauthorized', async () => {
         const response = await request(app).get('/api/v1/user/stats')
@@ -60,7 +60,7 @@ describe('USER', () => {
     })
   })
 
-  describe('UPDATE: /user', () => {
+  describe('PUT: /user', () => {
     describe('Missing token', () => {
       it('Should be response Unauthorized', async () => {
         const response = await request(app).put('/api/v1/user').send({
@@ -93,6 +93,43 @@ describe('USER', () => {
         expect(response.statusCode).toBe(200)
         expect(response.body).toBeDefined()
         expect(response.body.name).toBeDefined()
+      })
+    })
+  })
+
+  describe('POST: /user/image', () => {
+    const pathImage = path.resolve(__dirname, '../../__mocks__/image.jpeg')
+    console.log(pathImage)
+    describe('Missing token', () => {
+      it('Should be response Unauthorized', async () => {
+        const response = await request(app).post('/api/v1/user/image')
+        expect(response.statusCode).toBe(401)
+      })
+
+    })
+
+    describe('Invalid input', () => {
+      it('Should be response bad request', async () => {
+        const response = await request(app).post('/api/v1/user/image').auth(token.body.access_token, {
+          type: 'bearer'
+        }).attach('images', pathImage)
+  
+        expect(response.statusCode).toBe(400)
+        expect(response.body).toBeDefined()
+        expect(response.body.code).toBe(400)
+        expect(response.body.message).toBeDefined()
+      })
+    })
+
+    describe('Valid input', () => {
+      it('Should bre response OK', async () => {
+        const response = await request(app).post('/api/v1/user/image').auth(token.body.access_token, {
+          type: 'bearer'
+        }).attach('image', pathImage)
+
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toBeDefined()
+        expect(response.body.created).toBeTruthy()
       })
     })
   })
