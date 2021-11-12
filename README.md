@@ -1,17 +1,17 @@
 # YOUCAN-API #
-YouCanAPI is a the API for the mobile application to archive your goals to stay motivated to accomplish it.
+ **YouCanAPI is a the API for the mobile application to archive your goals to stay motivated to accomplish it**.
 
 
 ## -- How to use -- ##
 
-    You want to download the project to review the code, please do it and follow the next steps:
+    **You want to download the project to review the code, please do it and follow the next steps:**
 
     1. git clone https://github.com/leonelcontreras/youcan-api.git
     2. cd youcan-api
     3. npm i
     4. npm start
 
-    #### Do you want to execute some test?, please do it ####
+    **Do you want to execute some test?, please do it**
     1. npm test or npm run test:watch if you want to execute some changes
 
     #### Dou youn want to debug the code to resolve some problems ? do it on chrome console ####
