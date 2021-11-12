@@ -32,9 +32,9 @@ YouCanAPI is a the API for the mobile application to archive your goals to stay 
 
 ### Technologies ###
 
-In this API we are using diferents technologies focus in solve different problems
-when we create an API, this is with demostrative purpose, to show my experience
-working with Node.js
+  In this API we are using diferents technologies focus in solve different problems
+  when we create an API, this is with demostrative purpose, to show my experience
+  working with Node.js
 
 - Express:
   We are using express to create endpoints in the application, for example: GET, DELETE or Post,
@@ -97,10 +97,10 @@ working with Node.js
 
   ### Final thoughts ###
 
-  For now this is the structure of the application, I was focus on show the way of I create REST APIs with express,
-  in the future maybe I can add online documentation for the endpoints with swagger I think, right now I only will focus
-  on add new functionality if the app mobile requires or some corrections if I find bugs when start the integration.
-  but it's all for this project, finally I want to say thanks if you read this document of access to this repo to check it
-  or get some ideas.
+    For now this is the structure of the application, I was focus on show the way of I create REST APIs with express,
+    in the future maybe I can add online documentation for the endpoints with swagger I think, right now I only will focus
+    on add new functionality if the app mobile requires or some corrections if I find bugs when start the integration.
+    but it's all for this project, finally I want to say thanks if you read this document of access to this repo to check it
+    or get some ideas.
 
-  Thank you for reading!
+    Thank you for reading!
