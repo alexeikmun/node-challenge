@@ -1,13 +1,13 @@
-# YOUCAN-API #
- **YouCanAPI is a the API for the mobile application to archive your goals to stay motivated to accomplish it**.
+# node-test #
+ **Node test is a the API for unosquare NodeJS candidate evaluations**.
 
 
 ## -- How to use -- ##
 
     You want to download the project to review the code, please do it and follow the next steps:
 
-    1. git clone https://github.com/leonelcontreras/youcan-api.git
-    2. cd youcan-api
+    1. git clone {REPO}
+    2. cd node-test
     3. npm i
     4. npm start
 
@@ -30,6 +30,16 @@
     * npm run build
 
 
+## -- About the test -- ##
+
+    create two endpoints for userController [./src/api/controllers/user.controller.js] you will find and example for get that you can
+    use in the browser or any http client (GET: http://localhost:4000/api/v1/user).
+
+    1. GET: a user by id
+    2. POST: create a new user.
+    3. TEST: You can create a test suite for one of this new endpoints in the folder ./test/__tests__/
+
+
 ## -- About the project -- ## 
 
     ### Technologies ###
@@ -45,21 +55,13 @@
       the server to the native module http, this is to avoid incompatibility to future integrations like
       token and also to the unit test.
 
-    - mongoose:
-      Mongoose is an object modeler to MongoDB, and we use it to connect and interact with the database, and also
-      define the structure of the collections.
-
     - Slint + StandarJS:
       To define and maintanance the way or the style of the code, we´re using these technologies, to correct some
       spaces and basic techniques when we´re coding. This is a good way to work in a colaborative project.
 
     - express-validator:
       We use it to apply validation and sanitization to entry data, this is a way to protect the endpoint of bad 
-      or malicious requests.
-
-    - Firebase:
-      We are using two elements of firebase-admin, in one hand we have firebase Authentication, to validate identity
-      with tokens based it in oauth. In the other hand we have firebase storage to save files like image profile.  
+      or malicious requests. 
 
     - Jest + supertest :
       Finally we have Jest these combination of technologies to apply unit testing to all the 
@@ -69,40 +71,20 @@
 
   #### Architecture ####
 
-    We are using a very comun MVC architecture with all the information flows in one way, this can be a good idea
+    We are using a very comon MVC architecture with all the information flows in one way, this can be a good idea
     for APIs, but maybe can be short for web application when the interaction of the users it´s very high.
 
   #### Structure ####
-    - Controllers:
-      It´s the master mind of the application, they controlls the logic and flow of every endpoint. They
-      can call or access to services, validator and utils if it´s necesary to accomplish a goal.
-      
-    - Middlewares:
-      They´re intermediates between controllers, and in the most of the cases execute validations, like
-      validate token, inpunt data, sanitization and others.
-
-    - Validators: 
-      Commonly use as middleware, the validators check the input data and apply some sanitization.
-
-    - Services:
-      Provides very basic functionality that can be reuse it along the application, they can comunicate with
-      models and third party libraries, and expose his functionality as intermediate.
-
-    - Models:
-      Define the structure of the collections with a schema, this stablish fields and theirs validations,
-      and it´s expose it by the model. 
-
     - Routes:
       It´s the intermediate between all the controllers and the express app, the routes define with controllers
       can be expose and initialize all of them.
 
+    - Controllers:
+      It´s the master mind of the application, they controlls the logic and flow of every endpoint. They
+      can call or access to services, validator and utils if it´s necesary to accomplish a goal.
 
-  ### Final thoughts ###
+    - Database:
+      A folder with a dummy database for test use.
 
-    For now this is the structure of the application, I was focus on show the way of I create REST APIs with express,
-    in the future maybe I can add online documentation for the endpoints with swagger I think, right now I only will focus
-    on add new functionality if the app mobile requires or some corrections if I find bugs when start the integration.
-    but it's all for this project, finally I want to say thanks if you read this document of access to this repo to check it
-    or get some ideas.
-
+      
     Thank you for reading!

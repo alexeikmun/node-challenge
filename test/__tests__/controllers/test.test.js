@@ -1,29 +1,31 @@
 require('regenerator-runtime/runtime')
 const request = require('supertest')
 const dotenv = require('dotenv')
-const path = require('path')
-const { setupTranslate } = require('../../../src/providers')
 const api = require('../../../src/api')
-const app = api.default({})
 
-beforeAll(done => {
-  dotenv.config()
-  const translatePath = path.join(__dirname, '../../locales')
-  setupTranslate(translatePath, 'en')
-  done()
-})
+const {
+  test,
+} = require('../../__mocks__')
+const { response } = require('express')
 
-describe('GET: /test', () => {
-  describe('send empty params', () => {
-    it('should be response status code 200', async () => {
-      const response = await request(app).get('/api/v1/test')
-      expect(response.statusCode).toBe(200)
-    })
 
-    it('should be a response body', async () => {
-      const response = await request(app).get('/api/v1/test')
+describe('Dummy test', () => {
+  let app = {}
 
-      expect(response.body.gretting).toBeDefined()
+  beforeAll(async () => {
+    dotenv.config()
+    app = api.default()
+  })
+  
+  describe('GET: /test', () => {
+    describe('Valid request --->', () => {
+      it('Should be response OK', async () => {
+        const response = await request(app).get(`/api/v1/test`)
+
+        expect(response.statusCode).toBe(200)
+        expect(response.body).toBeDefined()
+        expect(response.body.gretting).toBe('Hi developer, May the force be with you')
+      })
     })
   })
 })

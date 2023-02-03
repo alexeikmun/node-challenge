@@ -1,6 +1,0 @@
-export { default as UserModel } from './user.model'
-export { default as GoalTypeModel } from './goal-type.model'
-export { default as GoalStatusModel } from './goal-status.model'
-export { default as NotificationFrequencyModel } from './notification-frequency.model'
-export { default as GoalModel } from './goal.model'
-export { default as RightThingModel } from './right-thing.model'

@@ -1,7 +1,0 @@
-export { userValidator, userUpdateValidator } from './user.validator'
-export { default as goalTypeValidator } from './goal-type.validator'
-export { default as goalStatusValidator } from './goal-status.validator'
-export { default as notificationFrequencyValidator } from './notification-frequency.validator'
-export { goalValidator, goalChangeStatusValidator } from './goal.validator'
-export { idValidator, timeZoneValidator } from './generic.validator'
-export { default as rightThingValidator } from './right-thing.validator'

@@ -1,9 +1,7 @@
-import i18n from 'i18n'
-
-const TestController = ({ router, tryCatch }) => {
-  router.get('/test', tryCatch((request, response) => {
-    response.send({ gretting: i18n.__('test.message') })
-  }))
+const TestController = ({ router }) => {
+  router.get('/test', (request, response) => {
+    response.send({ gretting: 'Hi developer, May the force be with you' })
+  })
 
   return router
 }

@@ -1,8 +1,0 @@
-{
-  "api.error": "Ocurrio algo muy extraño, intentalo nuevamente!",
-  "test.message": "Hola mundo!",
-  "access.user-already-exist": "El usuario ya existe",
-  "user-validator.email": "El email no tiene un formato valido",
-  "user-validator.password": "Al menos 8 caracteres",
-  "user-validator.name": "El nombre no es valido"
-}
